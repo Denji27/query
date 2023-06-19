@@ -12,4 +12,8 @@ public interface ConsumptionRepository extends JpaRepository<consumption, Intege
     List<consumption> findConsumptionsByProvinceId(@Param("provinceId") String provinceId);
     @Query(value = "select avg(c.readUnit) from consumption c")
     Float getAverageConsumption();
+    @Query(value = "select count(c) from consumption c, Contract con where c.contractId=con.id and con.provinceId=:provinceId")
+    Integer getNumberOfConsumptionByProvinceId(@Param("provinceId") String provinceId);
+    @Query(value = "select sum(c.readUnit) from consumption c, Contract con where c.contractId=con.id and con.provinceId=:provinceId")
+    Integer getTotalReadUnitByProvinceId(@Param("provinceId") String provinceId);
 }

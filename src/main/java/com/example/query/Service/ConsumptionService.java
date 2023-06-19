@@ -29,4 +29,15 @@ public class ConsumptionService {
         log.info("call here");
         return consumptionRepository.getAverageConsumption();
     }
+
+    @Cacheable(value = "countConsumption", key = "#countProvinceId")
+    public Integer getNumberOfConsumptionByProvinceId(String countProvinceId){
+        log.info("count");
+        return consumptionRepository.getNumberOfConsumptionByProvinceId(countProvinceId);
+    }
+    @Cacheable(value = "sumConsumption", key = "#sumProvinceId")
+    public Integer getTotalReadUnitByProvinceId(String sumProvinceId){
+        log.info("sum");
+        return consumptionRepository.getTotalReadUnitByProvinceId(sumProvinceId);
+    }
 }

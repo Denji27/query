@@ -27,4 +27,14 @@ public class ConsumptionController {
     public ResponseEntity<?> avg(){
         return ResponseEntity.ok(consumptionService.getAverageConsumption());
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<?> count(@RequestParam(value = "provinceId") String provinceId){
+        return ResponseEntity.ok(consumptionService.getNumberOfConsumptionByProvinceId(provinceId));
+    }
+
+    @GetMapping("/sum")
+    public ResponseEntity<?> sum(@RequestParam(value = "provinceId") String provinceId){
+        return ResponseEntity.ok(consumptionService.getTotalReadUnitByProvinceId(provinceId));
+    }
 }
